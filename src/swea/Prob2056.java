@@ -17,16 +17,16 @@ public class Prob2056 {
 			year=""; month=""; days = "";
 			String calendar = sc.nextLine();
 			
-			// ³â
+			// ë…„
 			year += calendar.substring(0, 4);
 			int newYear = Integer.parseInt(year);
 			
-			// ¿ù
+			// ì›”
 			month += calendar.substring(4, 6);
 			int newMonth = Integer.parseInt(month);
 
 			
-			// ÀÏ
+			// ì¼
 			days += calendar.substring(6, 8);
 			int newDays = Integer.parseInt(days);
 			result = "#"+test_case+" "+year+"/"+month+"/"+days;

@@ -25,8 +25,8 @@ public class Prob2063 {
 			findMiddle = Arrays.asList(sc.nextLine().split(" "));
 		}
 		
-		findMiddle = findMiddle.stream().distinct().collect(Collectors.toList());	 // Áßº¹ Á¦°Å
-		Collections.sort(findMiddle);		// Á¤·Ä
+		findMiddle = findMiddle.stream().distinct().collect(Collectors.toList());	 // ì¤‘ë³µ ì œê±°
+		Collections.sort(findMiddle);		// ì •ë ¬
 		
 		System.out.println(findMiddle.get(findMiddle.size()/2-1));
 		
