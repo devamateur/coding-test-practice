@@ -23,29 +23,20 @@ public class Prob1859 {
 			for(int i=0; i<N; i++) {
 				list.add(sc.nextInt());
 			}
+
+        	int max = list.get(N-1);
+
+        	// result long타입 주의 - 주어진 테스트 케이스 중 계산하면 int 범위를 넘어가는 경우가 있음
+			long result = 0;
 			
-			// max index 찾기
-			int maxIndex = 0;
-			for(int j=0; j<N; j++) {
-				if(list.get(maxIndex) < list.get(j))
-					maxIndex = j;
-			}
-			
-			int purchase = 0;
-			int count = 0;
-			int benefit = 0;
-			for(int k=0; k<N; k++) {
-				purchase += list.get(k);
-				count++;
-				if(k == maxIndex) {
-					benefit = count*list.get(maxIndex) - purchase; 
-				}
-			}
-			int result;
-			if(benefit < 0)
-				result = 0;
-			else
-				result = benefit;
+			/** 뒤에서부터 **/
+            for(int i=N-2; i>=0; i--) {
+                if(max > list.get(i)) {
+                    result += max-list.get(i);		// max와 매매가의 차이
+                } else {
+                    max = list.get(i);
+                }
+            }
 			
 			System.out.println("#"+test_case+" "+result);
 
