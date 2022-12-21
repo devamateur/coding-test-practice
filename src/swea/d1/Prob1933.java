@@ -1,4 +1,4 @@
-package swea;
+package swea.d1;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package swea;
+package swea.d1;
 
 /* 2027. 대각선 출력하기 */
 public class Prob2027 {
