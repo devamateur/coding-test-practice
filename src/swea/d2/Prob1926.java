@@ -13,22 +13,35 @@ public class Prob1926 {
 		for(int i=1; i<=n; i++) {
 			String result ="";
 			int num=i;
-			while(true) {
+			int newNum;
+			int count = 0;
+			boolean clap = false;
+			
+			while(num > 0) {
 				
-				int newNum = num%10;
-				if(newNum == 3 || newNum == 6 || newNum == 9) {
-					result += "-";
-				}
-				else{
-					result += num;
-				}
-				newNum /= 10;
+				newNum = num%10;	// 자릿수
 				
-				if(newNum <= 0)
-					break;
+				// 3, 6, 9가 들어가는 자릿수
+				if(newNum != 0 && (newNum%3 == 0 || newNum%6 == 0 || newNum%9 == 0)) {
+					count++;
+					clap = true;			// 박수 여부 true
+				}
+
+				num /= 10;
+			}
+			if(clap) {
+				if(count >= 2)		// 박수 2번 이상인 경우는 - 2개
+					result += "-- ";
+				else {
+
+					result += "- ";
+				}
 			}
 
-			System.out.print(result+" ");
+			else{					// 박수 치지 않는 경우에는 해당 숫자 출력
+				result += i+" ";
+			}
+			System.out.print(result);
 		}
 		
 		sc.close();
