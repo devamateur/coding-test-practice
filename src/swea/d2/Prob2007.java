@@ -14,7 +14,7 @@ public class Prob2007 {
 		for(int test_case = 1; test_case <= T; test_case++)
 		{
 			String words = sc.next();
-			int count=0;
+			int pattern = 0;
 			
 			// 패턴 비교
 			for(int i=1; i<=words.length(); i++) {
@@ -23,12 +23,12 @@ public class Prob2007 {
 				String b = words.substring(i, i+i);		// 1, 1~2, 1~3 ....
 					
 				if(a.equals(b)) {
-					count++;
+					pattern = a.length();
 					break;
 				}
 				
 			}
-			System.out.println("#"+test_case+" "+count);
+			System.out.println("#"+test_case+" "+pattern);
 		}
 		
 		sc.close();
