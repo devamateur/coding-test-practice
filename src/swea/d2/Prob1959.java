@@ -35,9 +35,12 @@ public class Prob1959 {
 					sum=0;
 					for(int j=0; j<M; j++) {
 						sum+=B[j]*A[i+j];
-						if(max < sum)
-							max = sum;
+					} 
+					
+					if(max < sum) {
+						max=sum;
 					}
+
 				}
 			}
 			else {
@@ -46,11 +49,14 @@ public class Prob1959 {
 					sum=0;
 					for(int j=0; j<N; j++) {
 						sum+=A[j]*B[i+j];
-						if(max < sum)
-							max = sum;
+					}
+					
+					if(max < sum) {
+						max=sum;
 					}
 				}
 			}
+			
 			
 			System.out.println("#"+test_case+" "+max);
 
