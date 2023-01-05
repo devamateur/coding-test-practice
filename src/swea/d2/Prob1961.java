@@ -11,7 +11,7 @@ public class Prob1961 {
 		
 		int[][] numbers;
 		String[][] rotated;
-		for(int tc=0; tc<T; tc++) {
+		for(int tc=1; tc<=T; tc++) {
 			int N = sc.nextInt();
 			
 			numbers = new int[N][N];
