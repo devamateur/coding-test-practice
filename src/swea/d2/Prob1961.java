@@ -9,8 +9,8 @@ public class Prob1961 {
 		
 		int T = sc.nextInt();
 		
-		int[][] numbers;
-		String[][] rotated;
+		int[][] numbers;			// 주어진 숫자 배열
+		String[][] rotated;			// 숫자 배열을 90도, 180도, 270도 회전한 결과
 		for(int tc=1; tc<=T; tc++) {
 			int N = sc.nextInt();
 			
@@ -28,24 +28,9 @@ public class Prob1961 {
 					rotated[i][j] = "";
 				}
 			}
-			
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<N; j++) {
-					for(int k=0; k<3; k++) {
-						if(k == 0) {		// 90도 회전
-							rotated[i][k] += String.valueOf(numbers[N-(j+1)][i]);
-						}
-						if(k == 1) {		// 180도 회전
-							rotated[i][k] += String.valueOf(numbers[N-(i+1)][N-(j+1)]);
-						}
-						if(k == 2) {		// 270도 회전
-							rotated[i][k] += String.valueOf(numbers[j][N-(i+1)]);
-						}
-							
-					}
-				}
 
-			}
+			rotated = rotate(N, numbers, rotated);
+			
 			System.out.println("#"+tc+" ");
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<3; j++) {
@@ -55,5 +40,26 @@ public class Prob1961 {
 		}
 		
 		sc.close();
+	}
+	// 메소드로 분리
+	static String[][] rotate(int N, int[][] numbers, String[][] rotated) {
+		String[][] rotating = rotated;
+		for(int i=0; i<N; i++) {
+			for(int j=0; j<N; j++) {
+				for(int k=0; k<3; k++) {
+					if(k == 0) {		// 90도 회전
+						rotating[i][k] += String.valueOf(numbers[N-(j+1)][i]);	// 문자열 연결
+					}
+					if(k == 1) {		// 180도 회전
+						rotating[i][k] += String.valueOf(numbers[N-(i+1)][N-(j+1)]);
+					}
+					if(k == 2) {		// 270도 회전
+						rotating[i][k] += String.valueOf(numbers[j][N-(i+1)]);
+					}
+						
+				}
+			}
+		}
+		return rotating;
 	}
 }
