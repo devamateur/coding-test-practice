@@ -35,6 +35,7 @@ public class Prob1946 {
 			
 			System.out.println("#"+tc);
 			for(int i=0; i<index; i++) {
+				// i % 10 == 0인 경우에 i가 0일 때도 포함되므로 i != 0 을 추가
 				if(i != 0 && i % 10 == 0) {		// 10개가 넘어가면 줄바꿈(원본 문서의 너비는 10)
 					System.out.println();
 				}
