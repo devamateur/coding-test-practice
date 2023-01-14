@@ -15,44 +15,27 @@ public class Prob1954 {
 			int[][] snail = new int[N][N];
 			
 			int number=1;
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<N; j++) {
-					if(i==0 && j != N-1) {
-						snail[i][j] = number++;
-					}
-				}
-			}
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<N; j++) {
-					if(j==N-1) {
-						snail[i][j] = number++;
-					}
-				}
-			}
+			int step=N-1;
+			int row = 0, col = 0;
 			
-			for(int i=0; i<N; i++) {
-				for(int j=N-1; j>=0; j--) {
-					if(i==N-1 && j != N-1) {
-						snail[i][j] = number++;
-					}
-				}
-			}
-
+			snail[0][0] = 1;
 			
-			for(int i=N-1; i>=0; i--) {
-				for(int j=N-1; j>=0; j--) {
-					if(i != 0 && i != N-1 && j==0) {
-						snail[i][j] = number++;
-					}
-				}
-			}
-			
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<N; j++) {
-					if(i != 0 && i != N-1 && j != 0 && j != N-1) {
-						snail[i][j] = number++;
-					}
-				}
+			while(true) {
+				if(number == N*N)	break;
+				if(number==1) {
+					for (int i = 0; i < step; i++)
+						snail[row][++col] = ++number;
+				} 
+				for (int i = 0; i < step; i++)
+					snail[++row][col] = ++number;
+				for (int i = 0; i < step; i++)
+					snail[row][--col] = ++number;
+				step--;
+				for (int i = 0; i < step; i++)
+					snail[--row][col] = ++number;
+				for (int i = 0; i < step; i++)
+					snail[row][++col] = ++number;
+				step--;
 			}
 
 			System.out.println("#"+tc);
