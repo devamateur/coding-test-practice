@@ -1,43 +1,46 @@
 package swea.d2;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /* 1288. 새로운 불면증 치료법 - N의 배수 번째 양 세기 */
 public class Prob1288 {
 	public static void main(String args[]) throws Exception
 	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T=Integer.parseInt(br.readLine());
 
-		Scanner sc = new Scanner(System.in);
-		int T=sc.nextInt();
 
 		for(int tc = 1; tc <= T; tc++)
 		{
-			String N = sc.next();
-
-			int count = 0;
-			int result = 0;
-			int num=0;
+			String N = br.readLine();
+			int intN = Integer.parseInt(N);
 			
+			int num=1;			// N배
+			
+			int count = 0;		// 0부터 9까지 count
+			boolean[] numbers = new boolean[10];
+
 			// N의 배수 번 양 세기
-			for(int i=0; i<N.length(); i++) {
-				int digit = Character.getNumericValue(N.charAt(i));
-				for(int j=0; j<10; j++) {
-					if(digit == j) {
+			while(true) {
+				for(int i=0; i<N.length(); i++) {
+					int digit = Integer.parseInt(N.substring(i, i+1));
+
+					if(numbers[digit] == false) {
+						numbers[digit] = true;
 						count++;
 					}
 				}
-
-				if(count == 10)
-					break;
+				if(count == 10) break;
 				else {
 					num++;
-					result = Integer.parseInt(N)*num;
+					N = Integer.toString(num*intN);
 				}
 			}
-			
-			System.out.println("#"+tc+" "+result);
+
+			System.out.println("#"+tc+" "+N);
 
 		}
-		sc.close();
+		br.close();
 	}
 }
