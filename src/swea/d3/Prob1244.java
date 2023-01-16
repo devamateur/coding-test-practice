@@ -5,7 +5,6 @@ import java.util.Scanner;
 /* 1244. [S/W 문제해결 응용] 2일차 - 최대 상금 */
 public class Prob1244 {
 	static int result;
-	//static char[] num;
 	public static void main(String[] args) throws Exception{
 		Scanner sc = new Scanner(System.in);
 		
@@ -17,12 +16,10 @@ public class Prob1244 {
 			
 			char[] num = N.toCharArray();
 
-			//int count = 0;
 			result = 0;
 			dfs(change, num);
 			
-			System.out.print("#"+tc+" ");
-			System.out.println(result);
+			System.out.println("#"+tc+" "+result);
 		}
 		
 		sc.close();
@@ -41,12 +38,13 @@ public class Prob1244 {
 		
 		for(int i=0; i<num.length; i++) {
 			for(int j=i+1; j<num.length; j++) {
-				temp = num[i];
-				num[i] = num[j];
-				num[j] = temp;
-				
-				dfs(count-1, num);
-
+				if(num[i] <= num[j]) {
+					temp = num[i];
+					num[i] = num[j];
+					num[j] = temp;
+					
+					dfs(count-1, num);
+				}
 			}
 		}	
 	}
