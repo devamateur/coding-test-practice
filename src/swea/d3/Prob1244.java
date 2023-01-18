@@ -25,6 +25,11 @@ public class Prob1244 {
 		
 		sc.close();
 	}
+	static void swap(int i, int j) {
+		char temp = num[i];
+		num[i] = num[j];
+		num[j] = temp;
+	}
 	static void dfs(int count, int index) {
 		String numbers="";
 		if(count == 0) {		// 종료 조건	
@@ -46,16 +51,14 @@ public class Prob1244 {
 		
 		for(int i=index; i<num.length; i++) {
 			for(int j=i+1; j<num.length; j++) {
+				// 이미 정렬된 상태여도 count가 홀수면 교환 -> 짝수일 경우 두 번 교환으로 원래 상태로 돌아갈 수 있지만 홀수는 그럴 수 없으므로
+				// ex) 94를 2번 교환할 경우, 1번 -> 49, 2번 -> 94로 원래 상태가 됨
 				if(num[i] <= num[j] || count%2 == 1) {
-					temp = num[i];
-					num[i] = num[j];
-					num[j] = temp;
+					swap(i, j);
 					
 					dfs(count-1, i);
 					
-					temp = num[i];
-					num[i] = num[j];
-					num[j] = temp;	
+					swap(i, j);
 				}
 			}
 		}	
