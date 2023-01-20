@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /* 2806. N-Queen */
 public class Prob2806 {
-	static boolean[][] board;
+	static int[] cells;
 	static int answer;
 	public static void main(String args[]) throws Exception
 	{
@@ -15,10 +15,10 @@ public class Prob2806 {
 		for(int tc = 1; tc <= T; tc++)
 		{
 			int N = sc.nextInt();
-			board = new boolean[N][N];		// NxN 보드
+			cells = new int[N];		// 컬럼만 저장
 			
 			answer=0;
-			dfs(N, 0, 0);
+			dfs(0);
 			
 			System.out.println("#"+tc+" "+answer);
 		}
@@ -26,21 +26,31 @@ public class Prob2806 {
 		sc.close();
 	}
 	
-	static void dfs(int N, int row, int col) {
-		if(N == 0) {
+	static void dfs(int count) {
+		if(count == cells.length) {
 			answer++;
 			return;
 		}
 		
-		for(int i=0; i<board.length; i++) {
-			for(int j=0; j<board.length; j++) {
-				board[i][j] = true;
+		for(int i=0; i<cells.length; i++) {
+			cells[count] = i;
 				
-				// 퀸이 같은 행, 열, 대각선에 있는지 검사
-				if(i != row && j != col && Math.abs(i-j) != Math.abs(row-col))
-					dfs(N-1, i, j);
-				
-			}
+			// 퀸이 같은 행, 열, 대각선에 없다면 탐색
+			if(bound(count))
+				dfs(count+1);
 		}
+	}
+	
+	// 퀸의 attack 여부를 검사하는 메소드 bound
+	static boolean bound(int count) {
+		for(int i=0; i<count; i++) {
+			if(cells[i] == cells[count])		// 같은 열에 있을 때
+				return false;
+			
+			// 같은 대각선에 있을 때 -> 행의 차이의 절댓값 = 열의 차이의 절댓값
+			if(Math.abs(count-i) == Math.abs(cells[count] - cells[i]))
+				return false;
+		}
+		return true;
 	}
 }
