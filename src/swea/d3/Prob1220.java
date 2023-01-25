@@ -18,15 +18,21 @@ public class Prob1220 {
 			}
 
 			int count=0;
+			
+			// 교착 상태는 12일 때 발생하므로 1인 상태를 기억해놓고 2가 나왔을 때 count를 증가시킨다
 			for(int i=0; i<side; i++) {
-				for(int j=0; j<side-1; j++) {
-					//String str = table[j][i] +""+ table[j+1][i];
-					
-					// 같은 열인데 값이 다를 때
-					if(table[j][i]==1 && table[j+1][i] == 2) {
+
+				int prev = 0;		// 이전 상태를 기억
+				for(int j=0; j<side; j++) {
+					if(table[j][i] == 1) {
+						prev=1;
+					}
+					if(table[j][i] == 2 && prev == 1) {
 						count++;
+						prev=0;
 					}
 				}
+
 			}
 			System.out.println("#"+tc+" "+count);
 		}
