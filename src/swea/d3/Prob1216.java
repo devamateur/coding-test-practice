@@ -20,65 +20,53 @@ public class Prob1216 {
 				words[i] = sc.next().split("");
 			}
 			
-			int length=0;
 			int maxLength=0;
 			
 			// 가로
-			for(int i=0; i<N; i++) {
-				int index=0;
-				
-				for(int j=0; j<N-length+1; j++) {
-					boolean isPalindrome = false;
+			for(int length=0; length<N; length++) {
+				for(int i=0; i<N; i++) {
+					
+					for(int j=0; j<N-length+1; j++) {
+						boolean isPalindrome = false;
 
-					for(int k=0; k<length/2; k++) {
-						if(words[i][j+k].equals(words[i][j+length-k-1])) {
-							isPalindrome = true;
-							index=length;
+						for(int k=0; k<length/2; k++) {
+							if(words[i][j+k].equals(words[i][j+length-k-1])) {
+								isPalindrome = true;
+							}
+							else {
+								isPalindrome = false;
+								break;
+							}
 						}
-						else {
-							isPalindrome = false;
-							break;
+						if(isPalindrome) {
+							maxLength = Math.max(maxLength, length);
 						}
-					}
-					if(isPalindrome) {
-						maxLength += index;
-					}
-					else {
-						break;
 					}
 				}
-				length++;
+				
+				// 세로
+				for(int i=0; i<N; i++) {
+
+					for(int j=0; j<N-length+1; j++) {
+						boolean isPalindrome = false;
+
+						for(int k=0; k<length/2; k++) {
+							if(words[j+k][i].equals(words[j+length-k-1][i])) {
+								isPalindrome = true;
+							}
+							else {
+								isPalindrome = false;
+								break;
+							}
+						}
+						if(isPalindrome) {
+							maxLength = Math.max(maxLength, length);
+						}
+
+					}
+				}
 			}
 			
-			// 세로
-			length=0;
-			for(int i=0; i<N; i++) {
-				int index=0;
-
-				for(int j=0; j<N-length+1; j++) {
-					boolean isPalindrome = false;
-
-					for(int k=0; k<length/2; k++) {
-						if(words[j+k][i].equals(words[j+length-k-1][i])) {
-							isPalindrome = true;
-							index=length;
-
-						}
-						else {
-							isPalindrome = false;
-							break;
-						}
-					}
-					if(isPalindrome) {
-						maxLength += index;
-					}
-					else {
-						break;
-					}
-
-				}
-				length++;
-			}
 			
 			System.out.println("#"+tc+" "+maxLength);
 		}
