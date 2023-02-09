@@ -23,11 +23,12 @@ public class Prob5948 {
 			
 			int sum=0;
 			
-			Set<Integer> set = new HashSet<>();
+			Set<Integer> set = new HashSet<>();		// 셋을 이용해 중복 제거
 			
 			for(int i=0; i<7; i++) {
 				for(int j=i+1; j<7; j++) {
 					for(int k=j+1; k<7; k++) {
+						// 앞에서부터 3개 정수의 합을 구해 set에 저장
 						sum = numbers[i] + numbers[j] + numbers[k];
 						set.add(sum);
 					}
@@ -35,10 +36,11 @@ public class Prob5948 {
 			}
 
 			List<Integer> answer = new ArrayList<>(set);
-
+			
+			/** sum 리스트를 내림차순으로 정렬 **/
             Collections.sort(answer, Collections.reverseOrder());
 			
-			System.out.println("#"+tc+" "+answer.get(4));
+			System.out.println("#"+tc+" "+answer.get(4));		// 5번째로 큰 sum 출력
 		}
 		
 		sc.close();
