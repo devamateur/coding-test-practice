@@ -28,10 +28,9 @@ public class Main {
 		// 비용이 4일 경우, 2일 때 주유하는 게 더 이득이므로 4*1이 아닌 2*1 = 2
 		// 10+6+2 = 18
 		int count=0;
-		count += city[0]*dist[0];
 
 		long min = Long.MAX_VALUE;
-		for(int i=1; i<N-1; i++) {
+		for(int i=0; i<N-1; i++) {
 			min = Math.min(min, city[i]);
 			
 			count += min*dist[i];
