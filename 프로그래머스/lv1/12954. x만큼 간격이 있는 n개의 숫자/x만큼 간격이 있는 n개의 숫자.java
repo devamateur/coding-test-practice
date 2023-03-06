@@ -2,10 +2,9 @@ class Solution {
     public long[] solution(int x, int n) {
         long[] answer = new long[n];
         
-        for(int i=0; i<answer.length; i++){
-            for(int j=0; j<=i; j++){        // i만큼 x를 더함
-                answer[i] += x;
-            }
+        answer[0] = x;
+        for(int i=1; i<answer.length; i++){
+            answer[i] = answer[i-1]+x;      // 이전 수에 x만큼 더함
         }
         
         return answer;
