@@ -23,20 +23,7 @@ public class Main {
 			result = house[house.length/2];
 		}
 		else {
-			int candidate1 = house[house.length/2-1];
-			int candidate2 = house[house.length/2];
-			int sum=0;
-			int sum2=0;
-			for(int i=0; i<house.length; i++) {
-				sum += Math.abs(house[i] - candidate1);
-				sum2 += Math.abs(house[i] - candidate2);
-			}
-			if(sum > sum2) {
-				result = candidate2;
-			}
-			else {
-				result = candidate1;
-			}
+			result = house[house.length/2-1];
 		}
 		System.out.println(result);
 		
