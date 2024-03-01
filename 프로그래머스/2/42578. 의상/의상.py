@@ -1,11 +1,3 @@
-from itertools import combinations, permutations
-
-def combi(n, r):
-    if n == r or r == 0:
-        return 1
-    else:
-        return combi(n-1, r-1) + combi(n-1, r)
-
 def solution(clothes):
     answer = 1
     
@@ -17,6 +9,6 @@ def solution(clothes):
             item_dict[clothes[i][1]] += 1
     
     for item, amount in item_dict.items():
-        answer *= combi(amount, 1) + combi(amount, 0)
+        answer *= amount+1       # 아이템 종류별로 안 입는 경우
     
-    return answer-1
+    return answer-1         # 모든 아이템을 안 입는 경우를 제외
