@@ -1,26 +1,28 @@
 def solution(cacheSize, cities):
     answer = 0
-    
     st = []
     
-    for i in range(len(cities)):
-        st.append(cities[i].lower())
-
-        if len(st) > cacheSize:     # 캐시가 찬 경우
-            top = st[-1]
-
-            if top in st[:-1]:  # cache hit
-                st.pop(st.index(top))
+    for city in cities:
+        st.append(city.lower())
+        
+        # 캐시크키보다 작거나 같을때
+        if len(st) <= cacheSize:
+            # cache hit
+            if st[-1] in st[:-1]:
                 answer += 1
-            else:              # cache miss
-                st = st[1:]
-                answer += 5
-        else:
-            top = st[-1]
-
-            if top in st[:-1]:  # cache hit
-                answer += 1
-            else:              # cache miss
+            # cache miss
+            else:
                 answer += 5
         
+        # 캐시크기보다 클 때
+        if len(st) > cacheSize:
+            # cache hit
+            if st[-1] in st[:-1]:
+                answer += 1
+                st.pop(st.index(st[-1]))
+            # cache miss
+            else:
+                answer += 5
+                st.pop(0)
+
     return answer
