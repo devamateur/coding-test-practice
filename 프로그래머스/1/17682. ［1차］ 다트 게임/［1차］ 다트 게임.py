@@ -14,8 +14,7 @@ def solution(dartResult):
             num_list[idx-1] *= -1      # 현재 점수에 마이너스
         if r == '*':
             num_list[idx-1] *= 2       # 현재 점수에 두배
-            if idx >= 2:               # 인덱스 범위를 넘어서면
-                num_list[idx-2] *= 2   # 이전 점수에 두배
+            num_list[idx-2] *= 2   # 이전 점수에 두배
                 
         if r == 'S':
             num_list[idx] = int(nums)
