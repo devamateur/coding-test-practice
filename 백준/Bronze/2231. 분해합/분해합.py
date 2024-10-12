@@ -1,7 +1,7 @@
 N = int(input())
 
 result = 0
-for i in range(N):
+for i in range(N//2, N):
     digits = str(i)
     cur_sum = i
     for ch in digits:
