@@ -8,13 +8,13 @@ for _ in range(N):
 
 new_maps = sorted(maps, key=lambda x: (x[1], x[2], x[3]), reverse=True)
 
-rank = 0
-prev = 0
-for c in new_maps:
-    if c[0] == K:
-        break
-    if prev != 0 and prev[0] != c[0] and prev[1] == c[1] and prev[2] == c[2] and prev[3] == c[3]:
-        continue
-    rank += 1
+idx = 0
 
-print(rank)
+for i in range(N):
+    if new_maps[i][0] == K:       # 정렬된 후, 국가 K의 인덱스를 저장
+        idx = i
+
+for i in range(N):
+    if new_maps[idx][1:] == new_maps[i][1:]:      # K와 금, 은, 동 갯수가 같은 경우 인덱스 출력 => 등수
+        print(i+1)
+        break
